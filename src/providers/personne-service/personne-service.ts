@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { PERSONNES } from '../../data-model';
-
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class PersonneServiceProvider {
   personnes: any;
+  personnesRef: AngularFireObject<any>;
 
   constructor(private afDB: AngularFireDatabase, private afAuth: AngularFireAuth) {
     this.afAuth.auth.signInAnonymously();
@@ -15,11 +14,25 @@ export class PersonneServiceProvider {
   }
 
   recupererPersonne() {
+    this.personnesRef = this.afDB.object('personnes');
     this.personnes = this.afDB.list('personnes').valueChanges();
   }
 
   listePersonne() {
     return this.personnes;
+  }
+
+  sauvegarder(personne: any) {
+    this.afDB.list('personnes').push({
+      nom: personne.nom,
+      prenom: personne.prenom,
+      titre: personne.titre,
+      ecole: personne.ecole,
+      filiere: personne.filiere,
+      telephone: personne.telephone,
+      email: personne.email,
+      lieu: personne.lieu
+    });
   }
 
   rechercherPersonne(term: string) {

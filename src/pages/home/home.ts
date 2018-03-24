@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { PersonneServiceProvider } from '../../providers/personne-service/personne-service';
 
 import { PersonneDetailPage } from '../personne-detail/personne-detail';
+import { FormPersonnePage } from '../form-personne/form-personne';
 
 @Component({
   selector: 'page-home',
@@ -27,5 +28,9 @@ export class HomePage {
     this.navCtrl.push(PersonneDetailPage, {
       personne: personne
     });
+  }
+
+  enregisterPersonne() {
+    this.navCtrl.push(FormPersonnePage);
   }
 }
