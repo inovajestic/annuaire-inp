@@ -4,13 +4,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>INP Annuaire</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="person-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-searchbar (ionInput)="recherchePersonne($event)"></ion-searchbar>
   <ion-list>
-    <button ion-item *ngFor="let personne of personnes" (click)="afficheDetail($event, personne)">
+    <button ion-item *ngFor="let personne of personnes | async" (click)="afficheDetail($event, personne)">
       <ion-avatar item-start>
         <img src="assets/imgs/user.svg">
       </ion-avatar>

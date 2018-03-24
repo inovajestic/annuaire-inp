@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { ConnexionPage } from '../pages/connexion/connexion';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,15 +16,16 @@ export class MyApp {
 
   pages: Array<{icon: string, title: string, component: any}>;
 
+
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { icon: 'home', title: 'Accueil', component: HomePage },
+      { icon: 'log-in', title: 'Connexion', component: ConnexionPage },
       { icon: 'share', title: 'Partagez avec vos amis', component: HomePage },
       { icon: 'information-circle', title: 'À propos', component: HomePage}
-    
     ];
 
   }
